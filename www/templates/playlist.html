@@ -1,6 +1,6 @@
-<ion-view view-title="Playlist">
+<ion-view view-title="{{list()[0]['org_desc']}}">
   <ion-content>
-    <h1>Playlist</h1>
+    <h1>{{list()[0]['org_desc']}}</h1>
     <ion-list>
       <ion-item ng-repeat="item in list()"> Name = {{item['name']}}
         <img src="http://www.miamibeachapi.com{{item['image_url']}}">
