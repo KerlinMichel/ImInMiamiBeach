@@ -38,6 +38,10 @@ angular.module('starter.controllers').factory('Directory', function(Miami) {
       //return dir;
     },
 
+    getDirName : function() {
+      return dir;
+    },
+
     moveup : function(item) {
       if(dir.indexOf('.') < 0) {
         var str = item[0];
@@ -55,18 +59,13 @@ angular.module('starter.controllers').factory('Directory', function(Miami) {
       if(dir.indexOf('-') > -1) {
           var i = dir.length-1;
           while(i > 0) {
-            console.log(dir.charAt(i));
             if(dir.charAt(i) === '-') {
-               console.log('back');
                break;
                continue;
-               console.log('end');
             }
             i--;
           }
-          console.log(i);
           dir = dir.substring(0, i);
-          console.log(dir);
       }
     }
   }

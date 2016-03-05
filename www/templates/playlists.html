@@ -1,12 +1,12 @@
 <ion-view view-title="I'm In Miami Beach">
   <ion-content>
-      
+
       <ion-card class="main-header">
         <ion-card-header>
             Places
         </ion-card-header>
       </ion-card>
-      
+
     <div class="place" ng-repeat="playlist in playlists" ng-hide="filter(playlist)"  ng-click="moveup(playlist)">
             <ion-card ion-item >
                     {{playlist.title}}
