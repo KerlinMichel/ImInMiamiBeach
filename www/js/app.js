@@ -49,8 +49,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
-    .state('app.tree/:dir', {
-      url: '/playlists',
+    .state('app.tree/', {
+      url: '/playlists/:dir',
       views: {
         'menuContent': {
           templateUrl: 'templates/playlists.html',
@@ -71,5 +71,5 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/playlists/place');
 });

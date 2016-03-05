@@ -47,7 +47,7 @@ angular.module('starter.controllers', [])
 
   $scope.moveup = function(id) {
     var flag = Directory.moveup(id['child']);
-    $state.go('app.tree/'+Directory.getDirName());
+    $state.go('app.tree/', {dir : Directory.getDirName()});
     $scope.playlists = Directory.getDirName();
     if(flag !== 0) {
       $state.go('app.list/');
@@ -66,6 +66,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams, Miami) {
+    console.log($stateParams.dir);
     $scope.list = Miami.getList();
     $scope.list = function() {
       return Miami.getList();

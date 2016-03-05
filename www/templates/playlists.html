@@ -1,28 +1,18 @@
 <ion-view view-title="I'm In Miami Beach">
   <ion-content>
-<<<<<<< HEAD
-    <h1></h1>
-    <ion-list>
-      <ion-item ng-repeat="playlist in playlists" ng-hide="filter(playlist)"  ng-click="moveup(playlist)">
-        {{playlist.title}}
-      </ion-item>
-    </ion-list>
-    <button ng-click="movedown()"> <- Back</button>
-=======
-      
+
       <ion-card class="main-header">
         <ion-card-header>
             Places
         </ion-card-header>
       </ion-card>
-      
+
     <div class="place" ng-repeat="playlist in playlists" ng-hide="filter(playlist)"  ng-click="moveup(playlist)">
             <ion-card ion-item >
                     {{playlist.title}}
             </ion-card>
       </div>
     <button ng-click="movedown()">Back</button>
->>>>>>> 657640bc3a5a9fada2f443f51eba05593dfb8cc0
   </ion-content>
 </ion-view>
 
