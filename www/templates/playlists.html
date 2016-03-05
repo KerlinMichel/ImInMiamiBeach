@@ -8,8 +8,9 @@
       </ion-card>
 
     <div class="place" ng-repeat="playlist in playlists" ng-hide="filter(playlist)"  ng-click="moveup(playlist)">
-            <ion-card ion-item >
+            <ion-card ion-item>
                     {{playlist.title}}
+                    <img class = 'front-images' src={{playlist.image}}>
             </ion-card>
       </div>
   </ion-content>
