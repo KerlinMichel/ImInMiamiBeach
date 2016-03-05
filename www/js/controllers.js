@@ -43,14 +43,18 @@ angular.module('starter.controllers', [])
 
 .controller('PlaylistsCtrl', function($scope, Directory, $state, $stateParams) {
   //$state.go('app.tree');
-  $scope.playlists = Directory.getDir();
-
+  $scope.playlists = function() {
+    Directory.setDir($stateParams.dir);
+    return Directory.getDirByName($stateParams.dir);
+  }
+  //$scope.playlists = Directory.getDirByName($stateParams.dir);
+  //console.log($stateParams.dir);
   $scope.moveup = function(id) {
     var flag = Directory.moveup(id['child']);
-    $state.go('app.tree/', {dir : Directory.getDirName()});
-    $scope.playlists = Directory.getDirName();
     if(flag !== 0) {
-      $state.go('app.list/');
+      $state.go('app.list');
+    } else {
+      $state.go('app.tree/', {dir : Directory.getDirName()});
     }
   };
 
@@ -61,15 +65,15 @@ angular.module('starter.controllers', [])
 
   $scope.movedown = function() {
     Directory.movedown();
-    $scope.playlists = Directory.getDir();
+    $scope.playlists = Directory.getDirByName($stateParams.dir);
   }
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams, Miami) {
-    console.log($stateParams.dir);
+    //console.log($stateParams.dir);
     $scope.list = Miami.getList();
     $scope.list = function() {
       return Miami.getList();
     }
-    console.log($scope.list());
+    //console.log($scope.list());
 });

@@ -39,7 +39,7 @@ angular.module('starter.controllers').factory('Miami', function() {
     			var outHTML = "";
     			if(data.businesses){
             list = data;
-            console.log(list['businesses']);
+            //console.log(list['businesses']);
     			}
     			$('#results').html(outHTML);
     		});
@@ -47,7 +47,7 @@ angular.module('starter.controllers').factory('Miami', function() {
   },
 
   getList : function() {
-    console.log(list);
+    //console.log(list);
     return list['businesses'];
   }
 }

@@ -38,11 +38,29 @@ angular.module('starter.controllers').factory('Directory', function(Miami) {
       //return dir;
     },
 
+    getDirByName : function(url) {
+      if(url.substring(0,5) === 'place') {
+        if(url.substring(6,10) === 'rest') {
+          return rest;
+        }
+        if(url.substring(6, 12) === 'hotels') {
+          return Hotels;
+        }
+        return places;
+      }
+      //return dir;
+    },
+
+    setDir: function(url) {
+      dir = url;
+    },
+
     getDirName : function() {
       return dir;
     },
 
     moveup : function(item) {
+      //console.log(dir);
       if(dir.indexOf('.') < 0) {
         var str = item[0];
         dir += ('-' + str);
