@@ -41,16 +41,33 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
+.controller('PlaylistsCtrl', function($scope, Directory, $location, $state) {
+  $scope.playlists = Directory.getDir();
+
+  $scope.moveup = function(id) {
+    var flag = Directory.moveup(id['child']);
+    $scope.playlists = Directory.getDir();
+    if(flag !== 0) {
+      $state.go('app.single');
+    }
+  };
+
+  $scope.filter = function(item) {
+    var type = typeof item;
+    return type === 'string';
+  };
+
+  $scope.movedown = function() {
+    Directory.movedown();
+    $scope.playlists = Directory.getDir();
+  }
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+.controller('PlaylistCtrl', function($scope, $stateParams, Miami) {
+    console.log('list');
+    $scope.list = Miami.getList();
+    $scope.list = function() {
+      return Miami.getList();
+    }
+    console.log($scope.list());
 });

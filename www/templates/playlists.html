@@ -1,9 +1,12 @@
-<ion-view view-title="Playlists">
+<ion-view view-title="Places">
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
+      <ion-item ng-repeat="playlist in playlists" ng-hide="filter(playlist)"  ng-click="moveup(playlist)">
         {{playlist.title}}
       </ion-item>
     </ion-list>
+    <button ng-click="movedown()"> <- Back</button>
   </ion-content>
 </ion-view>
+
+<!-- href="#/app/playlists/{{playlist.id}}"-->
