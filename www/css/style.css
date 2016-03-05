@@ -1,1 +1,22 @@
-/* Empty. Add your own CSS if you like */
+ion-view {
+    background-image: url(https://scontent-mia1-1.xx.fbcdn.net/hphotos-xlf1/v/wl/l/t35.0-12/12810162_10204154650185937_694213025_o.jpg?oh=de0e107473565dfecddb960e07261eff&oe=56DCC68B);
+}
+
+
+ion-card-header{
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+   display: block;
+    text-align: center;
+    font-size: 3em;
+    color: white;
+}
+
+.place{
+    color: white;
+    text-align: center;
+    margin-top: 3%;
+    width:50%;
+    display:inline-block;
+}
