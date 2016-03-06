@@ -1,10 +1,22 @@
 <ion-view view-title="{{list()[0]['org_desc']}}">
+<!--
   <ion-content>
     <ion-list>
       <ion-item ng-repeat="item in list()"> Name = {{item['name']}}
         <a ng-click="info(item)"><img src="http://www.miamibeachapi.com{{item['image_url']}}"></a>
       </ion-item>
     </ion-list>
+  </ion-content>
+-->
+<ion-content>
+
+    <div class="place" ng-repeat="item in list()" ng-click="info(item)">
+ 
+            <ion-card ion-item>
+                    <div class ='category-title'>{{item['name']}}</div>
+                    <img class = 'front-images' src="http://www.miamibeachapi.com{{item['image_url']}}">
+            </ion-card>
+      </div>
   </ion-content>
 </ion-view>
 <!-- <a ng-click="info(item)"> -->
