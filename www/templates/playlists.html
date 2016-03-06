@@ -7,9 +7,15 @@
         </ion-card-header>
       </ion-card>
 
+<<<<<<< HEAD
     <div class="place" ng-repeat="playlist in playlists() track by $index" ng-hide="filter(playlist)"  ng-click="moveup(playlist)">
             <ion-card ion-item >
+=======
+    <div class="place" ng-repeat="playlist in playlists" ng-hide="filter(playlist)"  ng-click="moveup(playlist)">
+            <ion-card ion-item>
+>>>>>>> e44e0d49646bbaa796b3c083b28973c5b3b96533
                     {{playlist.title}}
+                    <img class = 'front-images' src={{playlist.image}}>
             </ion-card>
       </div>
   </ion-content>

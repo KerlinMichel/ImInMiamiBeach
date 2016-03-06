@@ -1,5 +1,6 @@
 {
     "jscodehints.detectedExclusions": [
-        "/Users/Afajet/Desktop/ImInMiamiBeach/platforms/ios/cordova/lib/build.js"
+        "/Users/Afajet/Desktop/ImInMiamiBeach/platforms/ios/cordova/lib/build.js",
+        "/Users/Afajet/Desktop/ImInMiamiBeach/www/js/app.js"
     ]
 }
