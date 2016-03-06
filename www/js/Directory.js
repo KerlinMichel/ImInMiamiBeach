@@ -10,8 +10,8 @@ angular.module('starter.controllers').factory('Directory', function(Miami) {
 
   var Hotels = [
     'hotels.',
-    {title: 'Bed-Breakfast-Inn', id: 458, child : 458},
-    {title: 'Rooms with kitchens', id: 528, child : 528}
+    {title: 'Bed-Breakfast-Inn', image: 'https://scontent-mia1-1.xx.fbcdn.net/hphotos-xpt1/v/wl/t35.0-12/12810437_10204157088446892_1406317456_o.jpg?oh=dffd77a5d166131dfe65fad3a28be458&oe=56DE7CBD', id: 458, child : 458},
+    {title: 'Rooms with kitchens',image:'https://pixabay.com/static/uploads/photo/2015/12/05/23/18/kitchen-1078876_960_720.jpg', id: 528, child : 528}
   ]
 
   var eventls = [
