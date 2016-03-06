@@ -51,9 +51,11 @@ angular.module('starter.controllers', [])
   //console.log($stateParams.dir);
   $scope.moveup = function(id) {
     var flag = Directory.moveup(id['child']);
+    console.log(id['child']);
     if(flag !== 0) {
       $state.go('app.list');
     } else {
+      console.log('tree move');
       $state.go('app.tree/', {dir : Directory.getDirName()});
     }
   };
