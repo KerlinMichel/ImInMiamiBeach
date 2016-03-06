@@ -1,5 +1,11 @@
-<ion-view view-title="Search">
+<ion-view view-title="Popular businesses and events">
   <ion-content>
-    <h1>Search</h1>
+    <ion-list>
+      <ion-item ng-repeat="item in poppings track by $index | orderBy : '-popPoints' ">
+        {{$index+1}}
+        {{item['name']}}
+        Address: {{item['Address']}}
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>

@@ -1,7 +1,7 @@
 <ion-view view-title="{{info['dba_name']}}">
   <ion-content>
-      <div class=" card">
-          
+      <div class=" card" ng-hide="events">
+
           <div class=" item-image">
               <img src="http://www.miamibeachapi.com{{info['image_url']}}" style="width:200px; height: 200px;margin-left: auto;
     margin-right: auto;"/>
@@ -11,15 +11,35 @@
               Descriptions: {{info['description']}}
             </p>
               <div>
-              
+
                   <div>Address {{info['prem_full_address']}}</div>
       <div>Website {{info['website']}}</div>
                   <a href="https://facebook.com/{{info['facebook_id']}}" class="button button-icon icon ion-social-facebook"></a>
 <!--      <div>A muthafukin' : {{info['org_desc']}}</div>-->
               </div>
-          
+
         </div>
           </div>
-      
+
+  <div class="card" ng-show="events">
+    <div class=" item-image">
+        <img src="http://www.miamibeachapi.com{{info['image_url']}}" style="width:200px; height: 200px;margin-left: auto;
+          margin-right: auto;"/>
+      </div>
+    <div class="place-info">
+      <p >
+        Descriptions: {{info['description']}}
+      </p>
+        <div>
+
+            <div><b>Location</b> {{info['location']}}</div>
+            <div><b>Address</b> {{info['street']}}</div>
+            <div><b>Website</b> {{info['event_url']}}</div>
+<!--      <div>A muthafukin' : {{info['org_desc']}}</div>-->
+        </div>
+
+  </div>
+  </div>
+
   </ion-content>
 </ion-view>

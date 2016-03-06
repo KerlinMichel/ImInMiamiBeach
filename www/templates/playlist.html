@@ -11,10 +11,14 @@
 <ion-content>
 
     <div class="place" ng-repeat="item in list()" ng-click="info(item)">
- 
+
             <ion-card ion-item>
                     <div class ='category-title'>{{item['name']}}</div>
                     <img class = 'front-images' src="http://www.miamibeachapi.com{{item['image_url']}}">
+                    <i ng-show="hasWifi(item)" class="icon ion-wifi"></i>
+                    <i ng-show="isABar(item)" class="icon ion-ios-wineglass"></i>
+                    <div ng-show="hasATM(item)" style="font-size: 60%">ATM<div>
+
             </ion-card>
       </div>
   </ion-content>

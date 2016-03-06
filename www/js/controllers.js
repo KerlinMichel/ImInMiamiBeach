@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['firebase'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -40,9 +40,15 @@ angular.module('starter.controllers', [])
     }, 1000);
   };
 })
+.controller('PopCtrl', function($scope, $firebaseArray) {
+  var data = new Firebase('https://miamibeach.firebaseio.com/');
+  $scope.poppings = $firebaseArray(data);
+})
 
-.controller('PlaylistsCtrl', function($scope, Directory, $state, $stateParams) {
+.controller('PlaylistsCtrl', function($scope, Directory, $state, $stateParams, Miami) {
   //$state.go('app.tree');
+  //var helping = confirm('Click Ok if you want help Miami businesses know how to best serve their custumers by allowing us to give information on your favorite. Click cancel if you refuse.');
+  //console.log(helping);
   $scope.playlists = function() {
     Directory.setDir($stateParams.dir);
     return Directory.getDirByName($stateParams.dir);
@@ -51,11 +57,9 @@ angular.module('starter.controllers', [])
   //console.log($stateParams.dir);
   $scope.moveup = function(id) {
     var flag = Directory.moveup(id['child']);
-    console.log(id['child']);
     if(flag !== 0) {
       $state.go('app.list');
     } else {
-      console.log('tree move');
       $state.go('app.tree/', {dir : Directory.getDirName()});
     }
   };
@@ -72,10 +76,37 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams, $state, Miami) {
-    $scope.list = Miami.getList();
+
     $scope.list = function() {
       return Miami.getList();
     }
+
+    $scope.hasWifi = function(item) {
+      for(var i = 0; i < item['datatable_categories'].length; i++) {
+        if(item['datatable_categories'][i]['datatable_category_id'] == 677) {
+          return true;
+        }
+      }
+    return false;
+    };
+
+    $scope.isABar = function(item) {
+      for(var i = 0; i < item['datatable_categories'].length; i++) {
+        if(item['datatable_categories'][i]['datatable_category_id'] == 657) {
+          return true;
+        }
+      }
+    return false;
+    };
+
+    $scope.hasATM = function(item) {
+      for(var i = 0; i < item['datatable_categories'].length; i++) {
+        if(item['datatable_categories'][i]['datatable_category_id'] == 670) {
+          return true;
+        }
+      }
+      return false;
+    };
 
     $scope.info = function(place) {
       Miami.setInfo(place);
@@ -83,9 +114,40 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('InfoCtrl', function($scope, Miami) {
+.controller('InfoCtrl', function($scope, Miami, $firebaseObject, $firebaseArray) {
   $scope.info = Miami.getInfo();
   $scope.type = Miami.getType();
+
+  var data = new Firebase('https://miamibeach.firebaseio.com/');
+  if($scope.type !== 'places') {
+    var arr = $firebaseArray(data.child("/" + $scope.info['event_id']));
+
+    arr.$ref().once('value', function(snapshot) {
+        $scope.points = snapshot.val()['popPoints'];
+    });
+
+    if(isNaN($scope.points)) {
+      $scope.points = 0;
+    }
+
+    data.child("/" + $scope.info['event_id']).setWithPriority({name : $scope.info['name'],  Address: $scope.info['street'], date: Date.now(), popPoints : ++$scope.points }, 1);
+  }
+  else {
+    /*data.child("/" + $scope.info['event_id']).$ref().once('value', function(snapshot) {
+        $scope.points = snapshot.val()[popPoints];
+    });*/
+    var arr = $firebaseArray(data.child("/" + $scope.info['cust_id']));
+
+    arr.$ref().once('value', function(snapshot) {
+        $scope.points = snapshot.val()['popPoints'];
+    });
+
+    if(isNaN($scope.points)) {
+      $scope.points = 0;
+    }
+    data.child("/" + $scope.info['cust_id']).setWithPriority({name : $scope.info['name'],  Address: $scope.info['prem_full_address'], date: Date.now(), popPoints : ++$scope.points }, 0);
+  }
+
   $scope.events = $scope.type !== 'places';
   console.log($scope.info);
 });
