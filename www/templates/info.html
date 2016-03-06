@@ -1,1 +1,10 @@
-{{info}}
+<ion-view view-title="{{info['dba_name']}}">
+  <ion-content>
+      <p>Descriptions: {{info['description']}}</p>
+      <a href="https://facebook.com/{{info['facebook_id']}}">Le facebook</a>
+      <img src="http://www.miamibeachapi.com{{info['image_url']}}" width="100px" height="100px"></img>
+      <div>Address {{info['prem_full_address']}}</div>
+      <div>Website {{info['website']}}</div>
+      <div>A muthafukin' : {{info['org_desc']}}</div>
+  </ion-content>
+</ion-view>

@@ -83,4 +83,5 @@ angular.module('starter.controllers', [])
 
 .controller('InfoCtrl', function($scope, Miami) {
   $scope.info = Miami.getInfo();
+  console.log($scope.info);
 });
