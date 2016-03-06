@@ -1,5 +1,6 @@
 angular.module('starter.controllers').factory('Miami', function() {
   var theUrl = 'http://www.miamibeachapi.com/rest/a.pi/businesses/search';
+  var eventsUrl = 'http://www.miamibeachapi.com/rest/a.pi/events/search';
 	var consumerKey = "anonymous";
 	var consumerSecret = "anonymous";
 	var token = "5f02d1155718dd804e34a094c19d408d0ae585d7";
@@ -39,10 +40,10 @@ angular.module('starter.controllers').factory('Miami', function() {
 
         $.getJSON(getURL, function(data){
     			var outHTML = "";
-    			if(data.businesses){
+    			//if(data.businesses){
             list = data;
             //console.log(list['businesses']);
-    			}
+    			//}
     			$('#results').html(outHTML);
     		});
 
