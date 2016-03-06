@@ -75,8 +75,11 @@ angular.module('starter.controllers').factory('Directory', function(Miami) {
       }
       else {
         Miami.getData(item);
+        Miami.setType('places');
+        if(dir.indexOf('event') > -1) {
+          Miami.setType('event');
+        }
         return Miami.getList();
-        //console.log(item);
       }
     },
 

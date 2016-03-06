@@ -85,5 +85,7 @@ angular.module('starter.controllers', [])
 
 .controller('InfoCtrl', function($scope, Miami) {
   $scope.info = Miami.getInfo();
+  $scope.type = Miami.getType();
+  $scope.events = $scope.type !== 'places';
   console.log($scope.info);
 });

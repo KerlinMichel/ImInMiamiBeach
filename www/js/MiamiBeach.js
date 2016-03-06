@@ -19,7 +19,16 @@ angular.module('starter.controllers').factory('Miami', function() {
 		, parameters: {}
 	};
 
+  var messageEve = {
+		method: "GET"
+		, action: eventsUrl
+		, parameters: {}
+	};
+
   var list = [];
+  var events = [];
+
+  var type;
 
   var info;
 
@@ -33,6 +42,14 @@ angular.module('starter.controllers').factory('Miami', function() {
     		message.parameters['oauth_timestamp'] = freshTimestamp();
     		message.parameters['oauth_nonce'] = freshNonce();
 
+        messageEve.parameters = {};
+    		messageEve.parameters['rows'] = 100;
+    		messageEve.parameters['page'] = 1;
+    		messageEve.parameters['category_filter'] = filter;
+    		messageEve.parameters['jsoncallback'] = '?';
+    		messageEve.parameters['oauth_timestamp'] = freshTimestamp();
+    		messageEve.parameters['oauth_nonce'] = freshNonce();
+
         OAuth.completeRequest(message, accessor);
 		    OAuth.SignatureMethod.sign(message, accessor);
 		    var encodedParams = OAuth.formEncode(message.parameters);
@@ -40,18 +57,52 @@ angular.module('starter.controllers').factory('Miami', function() {
 
         $.getJSON(getURL, function(data){
     			var outHTML = "";
-    			//if(data.businesses){
+    			if(data.businesses){
             list = data;
-            //console.log(list['businesses']);
-    			//}
+    			}
+    			$('#results').html(outHTML);
+    		});
+
+        OAuth.completeRequest(messageEve, accessor);
+        OAuth.SignatureMethod.sign(messageEve, accessor);
+        var encodedParams1 = OAuth.formEncode(messageEve.parameters);
+        var eURL = eventsUrl + '?' + encodedParams1;
+
+        $.getJSON(eURL, function(data1){
+          console.log(eURL);
+          console.log(data1);
+    			var outHTML = "";
+    			if(data1.events){
+            events = data1;
+    			}
     			$('#results').html(outHTML);
     		});
 
   },
 
   getList : function() {
-    //console.log(list);
-    return list['businesses'];
+    if(type === 'places')
+      return list['businesses'];
+    else {
+      return events['events'];
+    }
+    /*if(type === 'places') {
+      return list['businesses'];
+      console.log('asdf');
+    }
+    else {
+      console.log('1234');
+      console.log(events);
+      return events;
+    }*/
+  },
+
+  setType : function(input) {
+      type = input;
+  },
+
+  getType : function() {
+    return type;
   },
 
   setInfo : function(place) {
