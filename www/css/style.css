@@ -18,6 +18,34 @@ ion-card-header{
     color: white;
 }
 
+.wrapword{
+white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+white-space: -pre-wrap;      /* Opera 4-6 */
+white-space: -o-pre-wrap;    /* Opera 7 */
+white-space: pre-wrap;       /* css-3 */
+word-wrap: break-word;       /* Internet Explorer 5.5+ */
+white-space: -webkit-pre-wrap; /* Newer versions of Chrome/Safari*/
+word-break: break-all;
+white-space: normal;
+
+}
+
+.place-info{
+    margin-left: 2%;
+    margin-right: 2%;
+    opacity: 85%;
+}
+.place-image{
+    margin-left:auto;
+    margin-right: auto;
+    display: block;
+        opacity: 85%;
+
+}
+.info{
+    opacity:85%;
+}
+
 .place{
     color:white;
     text-shadow: 2px 2px #000000;
@@ -32,4 +60,11 @@ ion-card-header{
 .place ion-card{
     width:50%;
     border-radius: 5px;
+}
+
+.info-card {
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: white;
+    opacity: 85%;
 }
