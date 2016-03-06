@@ -12,13 +12,13 @@
 
     <div class="place" ng-repeat="item in list()" ng-click="info(item)">
 
-            <ion-card ion-item>
+            <ion-card ion-item><i ng-show="close(item)" class="=icon ion-plus-circled"></i>
                     <div class ='category-title'>{{item['name']}}</div>
                     <img class = 'front-images' src="{{altImg(item)}}">
                     <i ng-show="hasWifi(item)" class="icon ion-wifi"></i>
                     <i ng-show="isABar(item)" class="icon ion-ios-wineglass"></i>
                     <div ng-show="hasATM(item)" style="font-size: 60%">ATM<div>
-                    <i ng-show="close(item)" class="=icon ion-plus-circled"></i>
+
             </ion-card>
       </div>
   </ion-content>

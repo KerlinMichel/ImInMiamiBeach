@@ -183,14 +183,16 @@ angular.module('starter.controllers', ['firebase'])
         /*item['datatable_categories'][i]['datatable_category_id'] == 401 ||
           item['datatable_categories'][i]['datatable_category_id'] == 441 ||
           item['datatable_categories'][i]['datatable_category_id'] == 394 ||
-          item['datatable_categories'][i]['datatable_category_id'] == 516*/
+          item['datatable_categories'][i]['datatable_category_id'] == 516
+
+          if(Math.abs(Location.getLat() - item['lat']) < 0.24)
+            if(Math.abs(Location.getLong() - item['lng']) < 0.24)*/
         if(true) {
-            console.log(Math.abs(Location.getLat() - item['lat']) < 0.25);
-            console.log(Math.abs(Location.getLong() - item['lng']) < 0.25);
-            console.log(Location.getLong() - item['lng']);
-            if(Math.abs(Location.getLat() - item['lat']) < 0.25)
-              if(Math.abs(Location.getLong() - item['lng']) < 0.95)
-                return true;
+            //console.log(Math.abs(Location.getLat() - item['lat']) < 0.25);
+            //console.log(Math.abs(Location.getLong() - item['lng']) < 0.25);
+            console.log(Location.getDistance(Location.getLat(), Location.getLong(), item['lat'], item['lng']));
+            if(Location.getDistance(Location.getLat(), Location.getLong(), item['lat'], item['lng']) < 15)
+            return true;
         }
       }
     return false;
