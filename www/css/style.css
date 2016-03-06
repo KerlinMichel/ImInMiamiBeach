@@ -4,8 +4,8 @@ ion-view {
 
 .front-images {
     margin-top:2px;
-    width:75%;
-    height: 75%;
+    width:100px;
+    height: 100px;
 }
 
 ion-card-header{
