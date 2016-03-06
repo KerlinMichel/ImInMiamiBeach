@@ -2,8 +2,9 @@
   <ion-content>
     <ion-list>
       <ion-item ng-repeat="item in list()"> Name = {{item['name']}}
-        <img src="http://www.miamibeachapi.com{{item['image_url']}}">
+        <a ng-click="info(item)"><img src="http://www.miamibeachapi.com{{item['image_url']}}"></a>
       </ion-item>
     </ion-list>
   </ion-content>
 </ion-view>
+<!-- <a ng-click="info(item)"> -->

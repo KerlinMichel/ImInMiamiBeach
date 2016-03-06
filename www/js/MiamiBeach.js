@@ -20,6 +20,8 @@ angular.module('starter.controllers').factory('Miami', function() {
 
   var list = [];
 
+  var info;
+
   return{
     getData: function(filter) {
         message.parameters = {};
@@ -49,6 +51,14 @@ angular.module('starter.controllers').factory('Miami', function() {
   getList : function() {
     //console.log(list);
     return list['businesses'];
+  },
+
+  setInfo : function(place) {
+    info = place;
+  },
+
+  getInfo : function() {
+    return info;
   }
 }
 

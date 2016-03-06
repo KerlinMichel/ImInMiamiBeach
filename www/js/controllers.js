@@ -69,11 +69,18 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams, Miami) {
-    //console.log($stateParams.dir);
+.controller('PlaylistCtrl', function($scope, $stateParams, $state, Miami) {
     $scope.list = Miami.getList();
     $scope.list = function() {
       return Miami.getList();
     }
-    //console.log($scope.list());
+
+    $scope.info = function(place) {
+      Miami.setInfo(place);
+      $state.go('app.info');
+    }
+})
+
+.controller('InfoCtrl', function($scope, Miami) {
+  $scope.info = Miami.getInfo();
 });
