@@ -42,11 +42,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase'])
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
+  .state('app.loc', {
+      url: '/loc',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html'
+          templateUrl: 'templates/browse.html',
+          controller: 'LocCtrl'
         }
       }
     })

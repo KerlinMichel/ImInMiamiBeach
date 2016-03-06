@@ -10,30 +10,26 @@ angular.module('starter.controllers').factory('Directory', function(Miami) {
 
   var Hotels = [
     'hotels.',
-<<<<<<< HEAD
-    {title: 'All hotels', id: 458, child : 360},
-    {title: 'Bed-Breakfast-Inn', id: 458, child : 458},
-    {title: 'Rooms with kitchens', id: 528, child : 528}
-=======
+
+    {title: 'All hotels', image:'http://i.imgur.com/ZlqkSBg.png',id: 458, child : 360},
     {title: 'Bed-Breakfast-Inn', image: 'https://scontent-mia1-1.xx.fbcdn.net/hphotos-xpt1/v/wl/t35.0-12/12810437_10204157088446892_1406317456_o.jpg?oh=dffd77a5d166131dfe65fad3a28be458&oe=56DE7CBD', id: 458, child : 458},
     {title: 'Rooms with kitchens',image:'https://pixabay.com/static/uploads/photo/2015/12/05/23/18/kitchen-1078876_960_720.jpg', id: 528, child : 528}
->>>>>>> 2f9f53ba40469fb463c5bac20c9e23a57ba952c6
   ]
 
   var parking = [
     'parking.',
-    {title: 'Underutilized Parking', image: 'http://64.207.179.53/images/uploads/CarParkingSign2.jpg', id : 1, child : 441},
+    {title: 'Underutilized Parking', image: 'https://www.motivelife.com/images/photos/SD_FalkenTire_Shoot/bts/A6541244.jpg', id : 1, child : 441},
     {title: 'Self Parking', image: 'http://64.207.179.53/images/uploads/CarParkingSign2.jpg', id : 1, child : 394},
-    {title: 'Valet Parking', image: 'http://64.207.179.53/images/uploads/CarParkingSign2.jpg', id : 1, child : 516}
+    {title: 'Valet Parking', image: 'http://ondemandbay.com/blog/wp-content/uploads/2015/12/valet-parking.jpg', id : 1, child : 516}
   ]
 
   var eventls = [
     'eventls.',
-    {title: 'Comedy', image: 'https://upload.wikimedia.org/wikipedia/commons/a/a7/Ultra-music-festival-week-1-miami-fl-2013.jpg', id : 1, child : 596},
+    {title: 'Comedy', image: 'https://i.imgur.com/cu6K8ga.png', id : 1, child : 596},
     {title: 'Music', image: 'https://upload.wikimedia.org/wikipedia/commons/a/a7/Ultra-music-festival-week-1-miami-fl-2013.jpg', id : 1, child : 602},
-    {title: 'Visual Arts', image: 'https://upload.wikimedia.org/wikipedia/commons/a/a7/Ultra-music-festival-week-1-miami-fl-2013.jpg', id : 1, child : 607},
-    {title: 'Performing Arts', image: 'https://upload.wikimedia.org/wikipedia/commons/a/a7/Ultra-music-festival-week-1-miami-fl-2013.jpg', id : 1, child : 604},
-    {title: 'Fairs and Festivals', image: 'https://upload.wikimedia.org/wikipedia/commons/a/a7/Ultra-music-festival-week-1-miami-fl-2013.jpg', id : 1, child : 600},
+    {title: 'Visual Arts', image: 'https://sqz921011.files.wordpress.com/2014/01/cincinnati-art-museum-6.jpg', id : 1, child : 607},
+    {title: 'Performing Arts', image: 'http://www.snd.sk/swift_data/source/fotogalerie/snd/90_vyrocie/galavecer/B%20%20%2044.JPG', id : 1, child : 604},
+    {title: 'Fairs and Festivals', image: 'https://www.universalorlando.com/Images/MG15-Gallery-Parade-1_tcm13-50762.jpg', id : 1, child : 600},
   ]
 //wifi 677
 //atm - 670
@@ -45,6 +41,8 @@ angular.module('starter.controllers').factory('Directory', function(Miami) {
     { title: 'Concerts',image:'https://scontent-mia1-1.xx.fbcdn.net/hphotos-xlf1/v/wl/t35.0-12/12842659_10204155270721450_818691782_o.jpg?oh=d80c1d5c8b36ac3047b5db075df2e089&oe=56DDD453', id: 5, child : rest },
     {title: 'Parking', image: 'http://64.207.179.53/images/uploads/CarParkingSign2.jpg', id: 6, child : parking}
   ];
+
+  var child;
 
   return{
     getDir : function() {
@@ -94,6 +92,7 @@ angular.module('starter.controllers').factory('Directory', function(Miami) {
         return 0;
       }
       else {
+        child = item;
         Miami.getData(item);
         Miami.setType('places');
         if(dir.indexOf('event') > -1) {
@@ -101,6 +100,10 @@ angular.module('starter.controllers').factory('Directory', function(Miami) {
         }
         return Miami.getList();
       }
+    },
+
+    getChild : function() {
+      return child;
     },
 
     movedown() {
