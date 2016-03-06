@@ -10,7 +10,7 @@
     <div class="place" ng-repeat="playlist in playlists() track by $index" ng-hide="filter(playlist)"  ng-click="moveup(playlist)">
  
             <ion-card ion-item>
-                    <div>{{playlist.title}}</div>
+                    <div class ='category-title'>{{playlist.title}}</div>
                     <img class = 'front-images' src={{playlist.image}}>
             </ion-card>
       </div>

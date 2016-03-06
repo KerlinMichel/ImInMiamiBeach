@@ -3,9 +3,9 @@ angular.module('starter.controllers').factory('Directory', function(Miami) {
 
   var rest = [
     'rest.',
-    {title : 'Restaurants & Bar', id : 1, child : 1},
-    {title : 'Bakery', id : 2, child : 447},
-    {title : 'Bar', id : 3, child : 3}
+    {title : 'Restaurants & Bar', image: 'https://upload.wikimedia.org/wikipedia/commons/d/d4/South_beach_miami_at_night.JPG',id : 1, child : 1},
+    {title : 'Bakery',image:'https://i.ytimg.com/vi/o1Mmg8n4fOs/maxresdefault.jpg', id : 2, child : 447},
+    {title : 'Bar', image: 'https://pixabay.com/static/uploads/photo/2015/02/22/03/15/martini-644743_960_720.jpg', id : 3, child : 3}
   ];
 
   var Hotels = [
