@@ -21,7 +21,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase'])
     }
   });
 })
-
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 

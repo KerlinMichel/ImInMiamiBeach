@@ -45,18 +45,98 @@ angular.module('starter.controllers', ['firebase'])
   $scope.poppings = $firebaseArray(data);
 })
 
-.controller('LocCtrl', function($scope, $cordovaGeolocation) {
-  var posOptions = {timeout: 10000, enableHighAccuracy: false};
-  $cordovaGeolocation
-    .getCurrentPosition(posOptions)
-    .then(function (position) {
-       $scope.lat  = position.coords.latitude
-       $scope.long = position.coords.longitude
-    }, function(err) {
-      console.log("Location error");
-    });
-    console.log($scope.lat);
+.controller('LocCtrl', function($scope, Location) {
+   //$scope.myLatlng = new google.maps.LatLng(lat,lng);
+   //console.log($scope.myLatlng);
+   $scope.showPosition = function (position) {
+        $scope.lat = position.coords.latitude;
+        $scope.lng = position.coords.longitude;
+        $scope.accuracy = position.coords.accuracy;
+        Location.setLat(position.coords.latitude);
+        Location.setLong(position.coords.longitude);
+        //console.log($scope.lat);
+        //console.log($scope.lng);
+        $scope.$apply();
+
+        var latlng = new google.maps.LatLng($scope.lat, $scope.lng);
+        //$scope.model.myMap.setCenter(latlng);
+        //$scope.myMarkers.push(new google.maps.Marker({ map: $scope.model.myMap, position: latlng }));
+      }
+
+      $scope.showError = function (error) {
+        $scope.error = "map broke";
+        $scope.$apply();
+      }
+   console.log(navigator.geolocation.getCurrentPosition($scope.showPosition, $scope.showError));
+   $scope.getlat = function() {
+     return $scope.lat;
+   };
+   $scope.getlng = function() {
+     return $scope.lng;
+   }
+   $scope.getLocation = function () {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition($scope.showPosition, $scope.showError);
+          console.log(navigator.geolocation.getCurrentPosition($scope.showPosition, $scope.showError));
+      }
+      else {
+          console.log("MAP ERROR");
+      }
+    }
 })
+.directive('map', ['Location',function(Location) {
+    return {
+        restrict: 'A',
+        link:function(scope, element, attrs, $compile){
+          var zValue = scope.$eval(attrs.zoom);
+
+          scope: {
+            getlat = '&getlat',
+            getlng = '&getlng'
+          }
+          var lat;
+          var lng;
+          scope.$watch('getlat()', function(newVal, oldVal, $compile){
+             lat = scope.getlat();
+             lng = scope.getlng();
+
+             if (newVal !== oldVal) {
+
+               myLatlng = new google.maps.LatLng(lat,lng),
+               mapOptions = {
+                  zoom: zValue,
+                  center: myLatlng
+                },
+                map = new google.maps.Map(element[0],mapOptions),
+                marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: map,
+                    draggable:true
+              });
+               //map = new google.maps.Map(element[0],mapOptions);
+               //$compile(element)(scope);
+             }
+             console.log(lng);
+         });
+
+          //var lat = scope.getlat();
+          //var lng = scope.getlng();
+
+          var myLatlng = new google.maps.LatLng(lat,lng),
+          mapOptions = {
+             zoom: zValue,
+             center: myLatlng
+           },
+           map = new google.maps.Map(element[0],mapOptions),
+           marker = new google.maps.Marker({
+               position: myLatlng,
+               map: map,
+               draggable:true
+         });
+
+        }
+    };
+}])
 
 .controller('PlaylistsCtrl', function($scope, Directory, $state, $stateParams, Miami) {
   //$state.go('app.tree');
@@ -88,10 +168,32 @@ angular.module('starter.controllers', ['firebase'])
   }
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams, $state, Miami, Directory) {
+.controller('PlaylistCtrl', function($scope, $stateParams, $state, Miami, Directory, Location) {
 
     $scope.list = function() {
       return Miami.getList();
+    }
+
+    $scope.close = function(item) {
+      if(Miami.getType() !== 'places')
+        return;
+        console.log(item);
+      for(var i = 0; i < item['datatable_categories'].length; i++) {
+        //console.log(item['datatable_categories']);
+        /*item['datatable_categories'][i]['datatable_category_id'] == 401 ||
+          item['datatable_categories'][i]['datatable_category_id'] == 441 ||
+          item['datatable_categories'][i]['datatable_category_id'] == 394 ||
+          item['datatable_categories'][i]['datatable_category_id'] == 516*/
+        if(true) {
+            console.log(Math.abs(Location.getLat() - item['lat']) < 0.25);
+            console.log(Math.abs(Location.getLong() - item['lng']) < 0.25);
+            console.log(Location.getLong() - item['lng']);
+            if(Math.abs(Location.getLat() - item['lat']) < 0.25)
+              if(Math.abs(Location.getLong() - item['lng']) < 0.95)
+                return true;
+        }
+      }
+    return false;
     }
 
     $scope.hasWifi = function(item) {
